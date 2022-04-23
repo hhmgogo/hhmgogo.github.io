@@ -1,0 +1,121 @@
+*{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background-color: #192a56;
+    perspective: 10000px;
+}
+
+.container{
+    position: relative;
+    height: 72px;
+    width: 432px;   
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -100%);
+transform-style: preserve-3d;
+}
+
+
+.container::before , .container::after{
+content: '';
+position:absolute;
+
+
+}
+
+
+.container::before{
+width: 532px;
+height: 200px;
+
+/*白線效果*/
+background: linear-gradient(90deg  , transparent 50% , #ffffff 50% ) repeat-x center ;
+/*白線尺寸*/
+background-size: 64px 10px ;
+background-position: 0 center;
+background-color: #3c3737;
+top: 30px;
+left: -50px;
+transform: rotateX(50deg);
+animation:road 0.5s linear infinite ;
+}
+
+@keyframes road {
+    100%{
+        background-position: -64px center;
+
+    }
+}
+
+.container::after{
+    width: 532px;
+    height: 18px;
+    background-color: #3c373791;
+    transform: translate3d(-50px , 122px , 76px );
+}
+
+
+
+
+
+
+.spinner{
+height: 100%;
+width: 100%;
+
+/*透明反射效果*/
+-webkit-box-reflect: below 0 linear-gradient(transparent 20%  , rgba(255 , 255 , 255 , 0.4));
+}
+
+.spinner span{
+    position:absolute;
+    height:72px;
+    width: 72px;
+  /*  border:1px solid #dd4d4d;*/
+    border-radius: 50%;
+    top: 10;
+    left:calc(18px * var(--i));
+
+    /*span 繞著spinner跑*/
+    animation: wormMove 1.5s linear infinite;
+    /*延遲0.06秒*/
+    animation-delay: calc(var(--i) * -0.06s);
+
+}
+
+
+@keyframes wormMove {
+    100%{
+        transform: 
+            rotate(360deg);
+        
+    }
+}
+.spinner span:before{
+   content: '';
+   position: absolute;
+   height: 12px;
+   width: 12px;
+   top: 0;
+   left: 50%;
+   background-color:#eb0674;
+   border-radius: 50%;
+
+   /*span 放大縮小*/
+   animation: spinhead 1.5s linear infinite; 
+     /*延遲0.06秒*/
+   animation-delay: calc(var(--i) * -0.06s);
+}
+
+@keyframes spinhead {
+    50%{
+        height: 6px;
+        width: 6px;
+background-color: #ecf531;
+    }
+}
